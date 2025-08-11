@@ -1,7 +1,7 @@
 import turtle
 import random
 
-# Pre-generate random positions for faster movement
+# Pre-generate positions
 positions = [(random.randint(-200, 200), random.randint(-200, 200)) for _ in range(1000)]
 pos_index = 0
 score = 0
@@ -10,7 +10,7 @@ score = 0
 screen = turtle.Screen()
 screen.title("Catch the Dot")
 screen.bgcolor("white")
-screen.tracer(0)  # Turn off auto updates for speed
+screen.tracer(0)
 
 # Dot setup
 dot = turtle.Turtle()
@@ -19,17 +19,29 @@ dot.color("red")
 dot.penup()
 dot.speed(0)
 
+# Score display setup
+score_display = turtle.Turtle()
+score_display.hideturtle()
+score_display.penup()
+score_display.goto(0, 200)
+score_display.write("Score: 0", align="center", font=("Arial", 16, "bold"))
+
+def update_score():
+    score_display.clear()
+    score_display.write(f"Score: {score}", align="center", font=("Arial", 16, "bold"))
+
 def move_dot(x, y):
     global score, pos_index
     score += 1
+    update_score()
     pos_index = (pos_index + 1) % len(positions)
     dot.goto(positions[pos_index])
-    screen.update()  # Manual update for instant refresh
+    screen.update()
 
+# Start game
 dot.onclick(move_dot)
-
-# Start position
 dot.goto(positions[0])
+update_score()
 screen.update()
 
 screen.mainloop()
