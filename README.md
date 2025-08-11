@@ -23,7 +23,19 @@ Use it for educational and demonstration purposes only.
 ## 💡 About ChatGPT
 ChatGPT is a large language model developed by [OpenAI](https://openai.com), capable of generating natural language text and code in various programming languages.
 
+## 🖥 Generating a `.exe` file
+The conversation also included instructions on how to package the generated Python code into a standalone executable for Windows using **PyInstaller**.
+
+### **Steps**
+1. **Install PyInstaller**  
+   ```bash
+    pip install pyinstaller
+   
+2. To run pyinstaller without adding it to PATH  
+    Instead of pyinstaller ..., run:
+   ```bash
+    python -m PyInstaller --onefile --windowed --clean --noconfirm --strip catch_the_dot.py
+
 ---
-PS: This Readme file was also generated using chatgpt
 **Generated:**
 All code in this repo originates from ChatGPT's output in the linked conversation.
